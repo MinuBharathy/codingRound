@@ -4,7 +4,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -47,7 +49,7 @@ public class FlightBookingTest {
         //all fields filled in. Now click on search
         driver.findElement(By.id("SearchBtn")).click();
 
-        Utils.waitForClassName(driver, "searchSummary", 10);
+        waitForClassName(driver, "searchSummary", 10);
         //verify that result appears for the provided journey search
         Assert.assertTrue(isElementPresent(By.className("searchSummary")));
 
@@ -64,4 +66,8 @@ public class FlightBookingTest {
         }
     }
 
+    private void waitForClassName(WebDriver driver, String locatorId, int durationInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, durationInSeconds);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(locatorId)));
+    }
 }

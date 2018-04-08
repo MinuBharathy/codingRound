@@ -17,7 +17,7 @@ public class SignInTest {
         Utils.setDriverPath();
 
         driver.get("https://www.cleartrip.com/");
-        Utils.waitForLinkText(driver, "Your trips",10);
+        waitForLinkText(driver, "Your trips",10);
 
         driver.findElement(By.linkText("Your trips")).click();
         driver.findElement(By.id("SignIn")).click();
@@ -29,6 +29,11 @@ public class SignInTest {
         String errors1 = driver.findElement(By.id("errors1")).getText();
         Assert.assertTrue(errors1.contains("There were errors in your submission"));
         driver.quit();
+    }
+
+    private void waitForLinkText(WebDriver driver, String locatorId, int durationInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, durationInSeconds);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(locatorId)));
     }
 
 }

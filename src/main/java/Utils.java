@@ -21,14 +21,4 @@ public class Utils {
         WebDriverWait wait = new WebDriverWait(driver, durationInSeconds);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locatorId)));
     }
-
-    protected static void waitForLinkText(WebDriver driver, String locatorId, int durationInSeconds) {
-        WebDriverWait wait = new WebDriverWait(driver, durationInSeconds);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText(locatorId)));
-    }
-
-    protected static void waitForClassName(WebDriver driver, String locatorId, int durationInSeconds) {
-        WebDriverWait wait = new WebDriverWait(driver, durationInSeconds);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(locatorId)));
-    }
 }
